@@ -69,6 +69,7 @@ module Cucumber
       fire_after_configuration_hook
       formatters
       load_step_definitions
+      # TODO: Can we remove this state?
       self.visitor = report
 
       receiver = Test::Runner.new(@configuration.event_bus)
