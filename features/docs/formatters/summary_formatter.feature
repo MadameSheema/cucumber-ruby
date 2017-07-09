@@ -6,7 +6,6 @@ Feature: Spec formatter
   Background:
     Given the standard step definitions
 
-  @todo-windows
   Scenario: A couple of scenarios
     Given a file named "features/test.feature" with:
     """

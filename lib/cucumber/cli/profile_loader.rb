@@ -22,19 +22,15 @@ Defined profiles in cucumber.yml:
 
         args_from_yml = cucumber_yml[profile] || ''
 
-        require 'shellwords'
-
-        case args_from_yml
+        case(args_from_yml)
         when String
           raise YmlLoadError, "The '#{profile}' profile in cucumber.yml was blank.  Please define the command line arguments for the '#{profile}' profile in cucumber.yml.\n" if args_from_yml =~ /^\s*$/
-          if Cucumber::WINDOWS
-            # Shellwords treats backslash as an escape character so we have to mask it out temporarily
-
-            placeholder = 'pseudo_unique_backslash_placeholder'
-            sanitized_line = args_from_yml.gsub('\\', placeholder)
-
-            args_from_yml = Shellwords.shellwords(sanitized_line).collect { |argument| argument.gsub(placeholder, '\\') }
+          if(Cucumber::WINDOWS)
+            # Shellwords treats backslash as an escape character so here's a rudimentary approximation of the same code
+            args_from_yml = args_from_yml.split
+            args_from_yml = args_from_yml.collect {|x| x.gsub(/^\"(.*)\"/,'\1') }
           else
+            require 'shellwords'
             args_from_yml = Shellwords.shellwords(args_from_yml)
           end
         when Array
@@ -42,7 +38,6 @@ Defined profiles in cucumber.yml:
         else
           raise YmlLoadError, "The '#{profile}' profile in cucumber.yml was a #{args_from_yml.class}. It must be a String or Array"
         end
-
         args_from_yml
       end
 
@@ -67,7 +62,7 @@ Defined profiles in cucumber.yml:
         require 'yaml'
         begin
           @cucumber_erb = ERB.new(IO.read(cucumber_file), nil, '%').result(binding)
-        rescue StandardError
+        rescue Exception
           raise(YmlLoadError,"cucumber.yml was found, but could not be parsed with ERB.  Please refer to cucumber's documentation on correct profile usage.\n#{$!.inspect}")
         end
 

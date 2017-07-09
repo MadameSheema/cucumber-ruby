@@ -16,7 +16,6 @@ Feature: Retry failing tests
     And a scenario "Solid" that passes
     And a scenario "Fails-forever" that fails
 
-  @todo-windows
   Scenario: Retry once, so Fails-once starts to pass
     When I run `cucumber -q --retry 1 --format summary`
     Then it should fail with:
@@ -41,7 +40,6 @@ Feature: Retry failing tests
         Fails-twice ✗
       """
 
-  @todo-windows
   Scenario: Retry twice, so Fails-twice starts to pass too
     When I run `cucumber -q --retry 2 --format summary`
     Then it should fail with:

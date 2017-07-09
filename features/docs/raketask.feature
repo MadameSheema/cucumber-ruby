@@ -1,4 +1,4 @@
-@spawn @wip-jruby
+@spawn
 Feature: Raketask
 
   In order to use cucumber's rake task
@@ -34,12 +34,10 @@ Feature: Raketask
         end
       """
 
-  @todo-windows
   Scenario: Passing feature
     When I run `bundle exec rake pass`
     Then the exit status should be 0
 
-  @todo-windows
   Scenario: Failing feature
     When I run `bundle exec rake fail`
     Then the exit status should be 1

@@ -1,17 +1,17 @@
 @needs-many-fonts
-Feature: i18n
+Feature: Language help
 
   It's possible to ask cucumber which keywords are used for any
   particular language by running:
 
-  `cucumber --i18n-keywords <LANG>`
+  `cucumber --i18n <language code> help`
 
   This will print a table showing all the different words we use for
   that language, to allow you to easily write features in any language
   you choose.
 
   Scenario: Get help for Portuguese language
-    When I run `cucumber --i18n-keywords pt`
+    When I run `cucumber --i18n pt help`
     Then it should pass with:
       """
         | feature          | "Funcionalidade", "Característica", "Caracteristica"                                         |
@@ -33,10 +33,10 @@ Feature: i18n
       """
 
   Scenario: List languages
-    When I run `cucumber --i18n-languages`
+    When I run `cucumber --i18n help`
     Then cucumber lists all the supported languages
 
   Scenario: Seek help for invalid language
-    When I run `cucumber --i18n-keywords foo`
+    When I run `cucumber --i18n foo`
     Then the output includes the message "Invalid language 'foo'"
     And cucumber lists all the supported languages

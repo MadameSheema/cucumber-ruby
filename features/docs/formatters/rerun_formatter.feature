@@ -18,7 +18,6 @@ Feature: Rerun formatter
   Background:
     Given the standard step definitions
 
-  @todo-windows
   Scenario: Exit code is zero
     Given a file named "features/mixed.feature" with:
       """
@@ -71,7 +70,6 @@ Feature: Rerun formatter
       """
       """
 
-  @todo-windows
   Scenario: Exit code is not zero, regular scenario
     Given a file named "features/mixed.feature" with:
       """

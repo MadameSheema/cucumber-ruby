@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 require 'spec_helper'
-require 'cucumber/glue/registry_and_more'
+require 'cucumber/rb_support/rb_language'
 require 'cucumber/configuration'
 
 module Cucumber
   describe 'Pending' do
     before(:each) do
-      registry = Glue::RegistryAndMore.new(Runtime.new, Configuration.new)
-      registry.begin_scenario(double('scenario').as_null_object)
-      @world = registry.current_world
+      l = RbSupport::RbLanguage.new(Runtime.new, Configuration.new)
+      l.begin_rb_scenario(double('scenario').as_null_object)
+      @world = l.current_world
     end
 
     it 'raises a Pending if no block is supplied' do

@@ -12,7 +12,6 @@ Feature: AfterStep Hooks
           Given this step passes
       """
 
-  @todo-windows
   Scenario: Access Test Step object in AfterStep Block
     Given a file named "features/support/env.rb" with:
       """
@@ -33,7 +32,6 @@ Feature: AfterStep Hooks
 
       """
 
-  @todo-windows
   Scenario: An AfterStep with one named argument receives only the result
     Given a file named "features/support/env.rb" with:
       """

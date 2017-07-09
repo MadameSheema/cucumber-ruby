@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 module Cucumber
-  module Glue
+  module RbSupport
     module Snippet
 
       ARGUMENT_PATTERNS = ['"([^"]*)"', '(\d+)']
